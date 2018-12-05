@@ -1,0 +1,131 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _extends3 = require('babel-runtime/helpers/extends');
+
+var _extends4 = _interopRequireDefault(_extends3);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _class, _temp;
+
+var _widthParser2 = require('mjml-core/lib/helpers/widthParser');
+
+var _widthParser3 = _interopRequireDefault(_widthParser2);
+
+var _mjmlCore = require('mjml-core');
+
+var _lodash = require('lodash');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MjTable = (_temp = _class = function (_BodyComponent) {
+  (0, _inherits3.default)(MjTable, _BodyComponent);
+
+  function MjTable() {
+    (0, _classCallCheck3.default)(this, MjTable);
+    return (0, _possibleConstructorReturn3.default)(this, (MjTable.__proto__ || (0, _getPrototypeOf2.default)(MjTable)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(MjTable, [{
+    key: 'getStyles',
+    value: function getStyles() {
+      return {
+        table: {
+          cellpadding: this.getAttribute('cellspadding'),
+          cellspacing: this.getAttribute('cellspacing'),
+          color: this.getAttribute('color'),
+          'font-family': this.getAttribute('font-family'),
+          'font-size': this.getAttribute('font-size'),
+          'line-height': this.getAttribute('line-height'),
+          'table-layout': this.getAttribute('table-layout'),
+          width: this.getAttribute('width')
+        }
+      };
+    }
+  }, {
+    key: 'getWidth',
+    value: function getWidth() {
+      var width = this.getAttribute('width');
+
+      var _widthParser = (0, _widthParser3.default)(width),
+          parsedWidth = _widthParser.parsedWidth,
+          unit = _widthParser.unit;
+
+      return unit === '%' ? width : parsedWidth;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var tableAttributes = (0, _lodash.reduce)(['cellpadding', 'cellspacing'], function (acc, v) {
+        return (0, _extends4.default)({}, acc, (0, _defineProperty3.default)({}, v, _this2.getAttribute(v)));
+      }, {});
+
+      return '\n      <table\n        ' + this.htmlAttributes((0, _extends4.default)({}, tableAttributes, {
+        width: this.getWidth(),
+        border: '0',
+        style: 'table'
+      })) + '\n      >\n        ' + this.getContent() + '\n      </table>\n    ';
+    }
+  }]);
+  return MjTable;
+}(_mjmlCore.BodyComponent), _class.endingTag = true, _class.allowedAttributes = {
+  align: 'enum(left,right,center)',
+  cellpadding: 'integer',
+  cellspacing: 'integer',
+  'container-background-color': 'color',
+  color: 'color',
+  'font-family': 'string',
+  'font-size': 'unit(px)',
+  'font-weight': 'string',
+  'line-height': 'unit(px,%)',
+  'padding-bottom': 'unit(px,%)',
+  'padding-left': 'unit(px,%)',
+  'padding-right': 'unit(px,%)',
+  'padding-top': 'unit(px,%)',
+  padding: 'unit(px,%){1,4}',
+  'table-layout': 'enum(auto,fixed,initial,inherit)',
+  'vertical-align': 'enum(top,bottom,middle)',
+  width: 'unit(px,%)'
+}, _class.defaultAttributes = {
+  align: 'left',
+  cellpadding: '0',
+  cellspacing: '0',
+  color: '#000000',
+  'font-family': 'Ubuntu, Helvetica, Arial, sans-serif',
+  'font-size': '13px',
+  'line-height': '22px',
+  padding: '10px 25px',
+  'table-layout': 'auto',
+  width: '100%'
+}, _temp);
+exports.default = MjTable;
+module.exports = exports['default'];

@@ -1,0 +1,97 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Yet Another Node.js Blogg Application API
+  description: Yet Another Node.js Blogg Application API
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+host: localhost:3001
+basePath: /api/v1/
+
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: login
+      description: login
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/LoginDto'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+  /users:
+    post:
+      tags:
+        - Users
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/CreateUserDto'
+      responses:
+        200:
+          description: create user
+          schema:
+            $ref: '#/definitions/User'
+
+    put:
+      tags:
+        - Users
+      summary: 유저 정보 변경
+      description: 유저 정보 변경
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/UpdateUserDto'
+      responses:
+        200:
+          description: OK
+
+definitions:
+  User:
+    type: object
+    required:
+      - _id
+      - phone
+      - userType
+      - createdAt
+      - updatedAt
+      - bluePoint
+
+    properties:
+      _id:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      createdAt:
+        type: number
+      updatedAt:
+        type: number
+  LoginDto:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
