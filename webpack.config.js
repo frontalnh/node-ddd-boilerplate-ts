@@ -43,12 +43,12 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.ts', '.tsx'],
     alias: {
       vue$: 'vue/dist/vue.esm.js'
-    }
+    },
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: './tsconfig.json' // setup tsconfig path
+      })
+    ]
   },
-  plugins: [
-    new Dotenv(),
-    new TsconfigPathsPlugin({
-      configFile: './tsconfig.json' // setup tsconfig path
-    })
-  ]
+  plugins: [new Dotenv()]
 };

@@ -1,11 +1,11 @@
 import { Field, Int, ObjectType, ID } from 'type-graphql';
 import { Types } from 'mongoose';
-import { UserType } from '../../../domain/transaction/Transaction';
+import { UserType } from '@domain/user/User';
 
 @ObjectType()
 export class UserGQType {
   @Field(() => String)
-  _id: Types.ObjectId;
+  id: number;
 
   @Field()
   phone: string;

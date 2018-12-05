@@ -14,11 +14,17 @@ import { UserResolver } from './infra/graphQL/resolvers/UserResolver';
 import { ApolloServer } from 'apollo-server-express';
 import { UserService } from './domain/user/user.service';
 import { UserApi } from './api/user.api';
+import mysql from '@infra/sequelizejs/mysql/index.js';
 
 const SEQUELIZE = 'SEQUELIZE';
 const MONGODB = 'MONGODB';
 
 require('ts-node').register();
+
+export enum DBType {
+  SEQUELIZE = 'SEQUELIZE',
+  MONGODB = 'MONGODB'
+}
 
 export const config = app => {
   // post body 설정을 위한 body parser
@@ -47,22 +53,19 @@ export const config = app => {
   require('dotenv').config();
 };
 
-export const initDB = async (dbType: string): Promise<mongoose.Connection> => {
+export const initDB = async (dbType: DBType): Promise<mongoose.Connection> => {
   switch (dbType) {
     case SEQUELIZE: {
       // initialize sequelize mysql
-      var models = require('./infra/sequelizejs/mysql');
-
       //sequelize의 싱크 작업을 시작하고 완료되면 설정된 포트를 통해서 통신 가능하도록 한다.
-      await models.sequelize.sync();
-      // services = new Service(models);
+      await mysql.sequelize.sync();
     }
 
-    case MONGODB: {
-      await mongoose.connect(process.env.MONGO_REPLICA_SET);
+    // case MONGODB: {
+    //   await mongoose.connect(process.env.MONGO_REPLICA_SET);
 
-      return mongoose.connection;
-    }
+    //   return mongoose.connection;
+    // }
     default: {
       return;
     }

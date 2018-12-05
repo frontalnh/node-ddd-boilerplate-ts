@@ -60,6 +60,46 @@ release 브랜치에서 스프린트 및 일정관리, 테스트 작업을 진�
 
 본 프로젝트에서는 클라이언트의 요청값을 검증함에 있어 모든 요청의 형태를 DTO 형태로 정의하고 해당 DTO 에 값을 넣기 전에 `Joi` 라이브러리를 사용하여 요청값에 대한 검증을 수행한다.
 
+## Webpack Configuration
+
+## tsconfig setting
+
+각 파일에서 다른 파일을 import 함에 있어서 보다 가독성을 높이기 위해 @domain과 같이 태그를 하여 손쉽게 import를 할 수 있습니다.
+
+tsconfig.json 파일의 예
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@domain/*": ["server/domain/*"]
+    }
+  }
+}
+```
+
+위처럼 옵션을 설정하면 복잡한 filepath 대신 위의 태그네임을 통해 import 할 수 있습니다.
+
+이때 위의 태그네임이 잘 반영이 되지 않는 경우가 있는데, 이는 웹팩에서 트랜스파일링을 하는 과정에서 webpack.config.js 세팅을 바꾸어 줌으로써 해결이 가능합니다.
+
+태그 네이밍을 하기 위해서 tsconfig-paths-webpack-plugin 을 사용하는데 해당 플러그인은 다음과 같이
+
+루트 plugin이 아닌 resolve 내의 plugin 내에 설정되어야 합니다.
+
+webpack.config.js의 예
+
+```js
+{
+  resolve: {
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: './tsconfig.json' // setup tsconfig path
+      })
+    ];
+  }
+}
+```
+
 ## Author
 
 [frontalnh(Namhoon Lee)](https://github.com/frontalnh)

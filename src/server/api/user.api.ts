@@ -36,7 +36,7 @@ export class UserApi {
 
       this.userRepository.save(user).then(
         user => {
-          let data = { _id: user._id };
+          let data = { id: user.id };
           const jwtToken = encodeJwt(data);
 
           resolve({ user: data, token: jwtToken });

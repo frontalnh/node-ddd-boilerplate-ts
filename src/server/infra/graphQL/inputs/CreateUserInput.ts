@@ -2,7 +2,7 @@ import { Field, InputType } from 'type-graphql';
 import { UserGQType } from '@infra/graphQL/types/UserGQType';
 
 @InputType()
-export class UserInput implements Partial<UserGQType> {
+export class CreateUserInput implements Partial<UserGQType> {
   @Field()
   public email!: string;
 

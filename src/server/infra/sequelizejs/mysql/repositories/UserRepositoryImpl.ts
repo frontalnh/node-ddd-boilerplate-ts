@@ -1,8 +1,9 @@
 import { User } from 'server/domain/user/User';
 import { ClientSession, Types } from 'mongoose';
-import { UserRepository, UserQuery } from '../../domain/user/UserRepository';
-import { removeNullEntity } from '../../utils';
+
 import { MongoUserModel } from '@infra/mongodb/models/MongoUserModel';
+import { UserRepository } from '@domain/user/UserRepository';
+import { MysqlUser } from '@infra/sequelizejs/mysql/models/MysqlUser';
 
 class UserFindObject {
   $and?: any[];
@@ -12,38 +13,22 @@ class UserFindObject {
 }
 
 export class UserRepositoryImpl implements UserRepository {
-  save(user: User, session?: ClientSession): Promise<User> {
-    removeNullEntity(user);
-
-    if (session) {
-      return MongoUserModel.findOneAndUpdate({ _id: user.id }, user)
-        .session(session)
-        .lean()
-        .exec();
-    }
-
-    return MongoUserModel.findOneAndUpdate({ _id: user.id }, user)
-      .lean()
-      .exec();
+  async save(user: User): Promise<User> {
+    let _ = MysqlUser.create(user, { raw: true });
+    let result = new User();
+    Object.assign(result, _);
+    return result;
   }
 
-  findById(id: number, session?: ClientSession): Promise<User> {
-    if (session) {
-      return MongoUserModel.findOne({ _id: id })
-        .lean() // remove unnecessary mongoose entities, and extract clean object
-        .session(session)
-        .exec();
-    }
+  async findById(id: number, session?: ClientSession): Promise<User> {
+    let _ = await MysqlUser.findById(id, { raw: true });
+    let user = new User();
+    Object.assign(user, _);
 
-    return MongoUserModel.findOne({ _id: id })
-      .lean()
-      .exec();
+    return user;
   }
 
-  findByQuery = (
-    query: UserQuery,
-    session?: ClientSession
-  ): Promise<User[]> => {
+  findByQuery = (query, session?: ClientSession): Promise<User[]> => {
     let obj = this._setFindObject(query);
 
     if (session) {
@@ -58,7 +43,7 @@ export class UserRepositoryImpl implements UserRepository {
       .exec();
   };
 
-  _setFindObject(query: UserQuery): UserFindObject {
+  _setFindObject(query): UserFindObject {
     let obj = new UserFindObject();
 
     if (query._id) {

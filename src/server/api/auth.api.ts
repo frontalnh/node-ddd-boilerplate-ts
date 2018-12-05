@@ -1,8 +1,8 @@
 import { UserService } from '../domain/user/user.service';
 import { HttpErrMsg } from '../utils/HttpErrMsg';
-
 import { UserRepository } from '../domain/user/UserRepository';
 import { encodeJwt } from '../utils';
+import { User } from '@domain/user/User';
 
 export class AuthApi {
   userService: UserService;
@@ -13,7 +13,7 @@ export class AuthApi {
     this.userRepository = userRepository;
   }
 
-  login(phone, password): Promise<{ user: Object; token: string }> {
+  login(phone, password): Promise<{ user: User; token: string }> {
     return new Promise(async (resolve, reject) => {
       let users = await this.userRepository.findByQuery({ phone });
 
@@ -30,9 +30,9 @@ export class AuthApi {
       }
 
       // send token and object
-      const jwtToken = encodeJwt({ user: { _id: user._id } });
+      const jwtToken = encodeJwt({ user: { _id: user.id } });
 
-      resolve({ user: { _id: user._id }, token: jwtToken });
+      resolve({ user, token: jwtToken });
     });
   }
 }
