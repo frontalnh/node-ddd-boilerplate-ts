@@ -1,8 +1,9 @@
 import { UserService } from '../domain/user/user.service';
 import { HttpErrMsg } from '../common/constants/HttpErrMsg';
 import { UserRepository } from '../domain/user/UserRepository';
-import { encodeJwt } from '../utils';
+
 import { User } from '@domain/user/User';
+import { encodeJwt } from '@utils/authenticator';
 
 export class AuthApi {
   userService: UserService;

@@ -14,5 +14,4 @@ export class UserQuery {
 export interface UserRepository {
   save(user: User, session?: ClientSession): Promise<User>;
   findById(id: number, session?: ClientSession): Promise<User>;
-  findByQuery(query: UserQuery, session?: ClientSession): Promise<User[]>;
 }
