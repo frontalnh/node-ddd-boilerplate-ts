@@ -14,7 +14,7 @@ const start = async () => {
   const apolloServer = await apolloSetup();
 
   app.use('/graphql', passwordGuard);
-  apolloServer.applyMiddleware({ app });
+
   initErrorHandler(app);
 
   app.listen(PORT, () => {

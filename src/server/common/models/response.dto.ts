@@ -1,4 +1,4 @@
-import { Count } from '../models/Count';
+import { Count } from './Count';
 
 export class ResponseDto {
   count?: Count;

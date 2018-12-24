@@ -14,9 +14,9 @@
     "test:prod": "jest",
     "start:prod": "export NODE_ENV=production &&nodemon ./dist/bundle.js --watch \".dist\"",
     "build": "webpack --config ./webpack.config.js --mode production",
+    "build:dev": "webpack --config ./webpack.config.js --watch --mode development",
     "start:dev": "pm2 start ./dist/bundle.js --watch && pm2 logs bundle",
-    "restart:dev": "pm2 restart ./dist/bundle.js --watch && pm2 logs bundle",
-    "build:dev": "webpack --config ./webpack.config.js --watch --mode development"
+    "restart:dev": "pm2 restart ./dist/bundle.js --watch && pm2 logs bundle"
   },
   "jest": {
     "moduleFileExtensions": [

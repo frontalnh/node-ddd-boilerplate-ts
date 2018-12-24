@@ -1,4 +1,4 @@
-import { HttpErrMsg } from '../../utils/HttpErrMsg';
+import { HttpErrMsg } from '../../common/constants/HttpErrMsg';
 import { decodeJwt } from '../../utils';
 
 const extractUserAndTokenFromRequest = (req, userService) => {

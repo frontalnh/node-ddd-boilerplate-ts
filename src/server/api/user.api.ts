@@ -3,7 +3,7 @@ import { CreateUserDto } from '../domain/user/dto/CreateUserDto';
 import { User } from '../domain/user/User';
 import { UserRepository } from '../domain/user/UserRepository';
 import { encrypt, encodeJwt } from '../utils';
-import { HttpErrMsg } from '../utils/HttpErrMsg';
+import { HttpErrMsg } from '../common/constants/HttpErrMsg';
 
 export class UserApi {
   userService: UserService;
