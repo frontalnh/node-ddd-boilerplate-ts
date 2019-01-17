@@ -1,0 +1,28 @@
+// tsconfig 파일은 내부 컴파일 및 ts의 모든 컴파일링에 대한 설정을 담당한다.
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "outDir": "./dist/",
+    "noImplicitAny": false,
+    "lib": ["es2015"],
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "watch": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@domain/*": ["server/domain/*"],
+      "@common/*": ["server/common/*"],
+      "@utils/*": ["server/utils/*"],
+      "@infra/*": ["server/infra/*"],
+      "@api/*": ["server/api/*"],
+      "@interfaces/*": ["server/interfaces/*"]
+    }
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

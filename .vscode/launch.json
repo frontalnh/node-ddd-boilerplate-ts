@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}/src/server/index.ts",
+      "outFiles": ["${workspaceFolder}/dist/bundle.js"],
+      "sourceMaps": true
+    }
+    // {
+    //   "name": "Current TS File",
+    //   "type": "node",
+    //   "request": "launch",
+    //   "args": ["${relativeFile}"],
+    //   "runtimeArgs": [
+    //     "--nolazy",
+    //     "-r",
+    //     "ts-node/register",
+    //     "-r",
+    //     "tsconfig-paths/register"
+    //   ],
+    //   "sourceMaps": true,
+    //   "console": "integratedTerminal",
+    //   "cwd": "${workspaceRoot}",
+    //   "protocol": "inspector"
+    // }
+  ]
+}

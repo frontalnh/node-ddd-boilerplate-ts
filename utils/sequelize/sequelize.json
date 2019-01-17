@@ -1,0 +1,20 @@
+{
+  "development": {
+    "dialect": "mysql",
+    "host": "rds-dev-sa.cgf2n2fvnfzp.ap-northeast-2.rds.amazonaws.com",
+    "port": 14306,
+    "username": "root",
+    "password": "BNeB6sQsBa3kr3BT6yPWq7Dr8",
+    "database": "shareable",
+    "logging": false
+  },
+  "production": {
+    "dialect": "mysql",
+    "host": "rds-dev-sa.cgf2n2fvnfzp.ap-northeast-2.rds.amazonaws.com",
+    "port": 14306,
+    "username": "root",
+    "password": "BNeB6sQsBa3kr3BT6yPWq7Dr8",
+    "database": "shareable",
+    "logging": false
+  }
+}
