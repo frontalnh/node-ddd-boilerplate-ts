@@ -1,7 +1,7 @@
 import { CustomError } from '@common/models/CustomError';
 import { HttpErrCode } from '@common/constants/HttpErrCode';
 import { decodeJwt } from '@utils/authenticator';
-import { ApiUserRepositoryImpl } from '@infra/sequelizejs/mysql/repositories/api-user.repository.impl';
+import { UserRepositoryImpl } from '@infra/sequelizejs/mysql/repositories';
 
 export function apiGuard(
   target: any,
@@ -33,12 +33,12 @@ export function apiGuard(
 }
 
 const extractUserFromJwt = async (jwt: string) => {
-  let apiUserRepository = new ApiUserRepositoryImpl();
+  let apiUserRepository = new UserRepositoryImpl();
   let decoded: { user: any } = <{ user: any }>decodeJwt(jwt);
 
   console.log('Decoded: ', decoded);
   let user = await apiUserRepository.findById(decoded.user.id);
-  if (!user) throw new Error(HttpErrCode.API.NO_USER);
+  if (!user) throw new Error(HttpErrCode.AUTH.NO_USER);
 
   return user;
 };

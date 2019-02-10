@@ -1,0 +1,1 @@
+{"version":3,"file":"httpSender.js","sourceRoot":"","sources":["../../src/server/utils/httpSender.ts"],"names":[],"mappings":";;AACA,+DAA4D;AAE/C,QAAA,mBAAmB,GAAG,CAAC,GAAG,EAAE,GAAyB,EAAE,EAAE;IACpE,mCAAmC;IAEnC,GAAG,CAAC,MAAM,CAAC,uBAAU,CAAC,EAAE,CAAC,CAAC;IAC1B,GAAG,CAAC,IAAI,CAAC,GAAG,CAAC,CAAC;AAChB,CAAC,CAAC"}

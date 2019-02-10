@@ -12,7 +12,6 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "watch": true,
     "baseUrl": "./src",
     "paths": {
       "@domain/*": ["server/domain/*"],
@@ -20,9 +19,10 @@
       "@utils/*": ["server/utils/*"],
       "@infra/*": ["server/infra/*"],
       "@api/*": ["server/api/*"],
-      "@interfaces/*": ["server/interfaces/*"]
+      "@interfaces/*": ["server/interfaces/*"],
+      "@root/*": ["server/*"]
     }
   },
   "include": ["./src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules", "**/*.spec.ts", "dist"]
 }

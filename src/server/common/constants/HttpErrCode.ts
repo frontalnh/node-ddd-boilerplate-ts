@@ -1,5 +1,8 @@
 export const HttpErrCode = {
   JWT: { NO_TOKEN: 'JWT.NO_TOKEN' },
+  AUTH: {
+    NO_USER: 'AUTH.NO_USER'
+  },
   LOGIN: {
     NO_USER: 'LOGIN.NO_USER',
     INVALID_PASSWORD: 'LOGIN.INVALID_PASSWORD',

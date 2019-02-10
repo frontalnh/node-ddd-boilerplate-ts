@@ -15,24 +15,6 @@ export class TransactionRepositoryImpl {
     return await Transaction.findAll(filter);
   }
 
-  async getTotalAmount(
-    userId,
-    assetId
-  ): Promise<{ id: number; totalInvestAmount: number }> {
-    let result = await (<any>Transaction.findAll({
-      attributes: [
-        'id',
-        [sequelize.fn('SUM', sequelize.col('amount')), 'totalInvestAmount']
-      ],
-      where: { assetId, fromUserId: userId },
-      raw: true
-    }));
-
-    console.log(result);
-
-    return result[0];
-  }
-
   async findById(id: number) {
     return await Transaction.findByPrimary(id, { raw: true });
   }

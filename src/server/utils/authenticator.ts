@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
-import { Constants } from 'server/common/Constants';
+import { Constants } from '@common/Constants';
 
 export const encodeJwt = (data: any, expTime?: number) => {
   let expiresIn = 24 * 360000000;

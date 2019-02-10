@@ -26,7 +26,6 @@ import { PaymentRepositoryImpl } from '@infra/sequelizejs/mysql/repositories/pay
 import { OrderRepository } from '@domain/order/order.repository';
 import { OrderRepositoryImpl } from '@infra/sequelizejs/mysql/repositories/order.repository.impl';
 import { router } from '@interfaces/http';
-const PORT = process.env.PORT || '3001';
 const SEQUELIZE = 'SEQUELIZE';
 
 require('typescript-require');
@@ -57,7 +56,7 @@ export class Components {
 require('ts-node').register();
 
 export class App {
-  public async start() {
+  public async setup(): Promise<express.Express> {
     const app = express();
 
     // post body 설정을 위한 body parser
@@ -75,7 +74,7 @@ export class App {
     app.use(cors(this.getCorsOption()));
 
     // sendgrid setting
-    this.setSendgrid();
+    // this.setSendgrid();
     await this.initDB(DBType.SEQUELIZE);
 
     require('dotenv').config();
@@ -94,9 +93,7 @@ export class App {
     app.use(notFoundErrorHandler);
     app.use(domainErrHandler);
 
-    app.listen(PORT, () => {
-      logger.info('Express server listening on port ' + PORT);
-    });
+    return app;
   }
 
   private initDB = async (dbType: DBType) => {
@@ -145,6 +142,9 @@ export class App {
     let files = fs.readdirSync('./src/server/common/validateSchemas');
     let schemas = [];
     for (let file of files) {
+      let array = file.split('.');
+      array.pop();
+      file = array.join('');
       let fileObj = require('./common/validateSchemas/' + file);
 
       for (let key in fileObj) {

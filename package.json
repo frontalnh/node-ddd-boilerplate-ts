@@ -10,31 +10,10 @@
     "test": "jest -i",
     "test:dev": "jest -i --no-cache --watch",
     "test:unit": "jest -i --no-cache --watch -t ",
-    "start": "node ./dist/bundle.js",
-    "test:prod": "jest",
-    "start:prod": "pm2 start ./dist/bundle.js && pm2 logs bundle",
-    "build": "webpack --config ./webpack.config.js --mode production",
-    "build:dev": "webpack --config ./webpack.config.js --watch --mode development",
-    "start:dev": "node ./dist/bundle.js",
-    "restart:dev": "pm2 restart ./dist/bundle.js --watch && pm2 logs bundle"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "ts-jest"
-    },
-    "globals": {
-      "ts-jest": {
-        "tsConfigFile": "tsconfig.json"
-      }
-    },
-    "testMatch": [
-      "**/*.test.+(ts|tsx|js)"
-    ]
+    "start": "node ./dist/index.js",
+    "start:dev": "node ./dist/index.js",
+    "build": "tsc",
+    "build:dev": "tsc --watch"
   },
   "author": "",
   "license": "ISC",
@@ -79,6 +58,7 @@
     "json2csv": "^4.3.1",
     "jsonwebtoken": "^8.3.0",
     "mjml": "^4.1.2",
+    "module-alias": "^2.1.0",
     "multer": "^1.3.1",
     "multer-s3": "^2.7.0",
     "mysql": "^2.16.0",
@@ -120,5 +100,15 @@
     "ts-node": "^7.0.1",
     "webpack-cli": "^3.1.2",
     "webpack-node-externals": "^1.7.2"
+  },
+  "_moduleAliases": {
+    "@domain": "dist/domain",
+    "@infra": "dist/infra",
+    "@util": "dist/util",
+    "@common": "dist/common",
+    "@interfaces": "dist/interfaces",
+    "@utils": "dist/utils",
+    "@api": "dist/api",
+    "@root": "dist"
   }
 }
