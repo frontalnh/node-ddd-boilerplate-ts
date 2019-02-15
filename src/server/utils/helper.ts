@@ -1,14 +1,12 @@
 export const genRandomString = () => {
   let randomString = '';
-  const possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
   for (let i = 0; i < 10; i++) {
-    randomString += possible.charAt(
-      Math.floor(Math.random() * possible.length)
-    );
+    randomString += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   randomString = Date.now().toString() + randomString;
+
   return randomString;
 };
 
