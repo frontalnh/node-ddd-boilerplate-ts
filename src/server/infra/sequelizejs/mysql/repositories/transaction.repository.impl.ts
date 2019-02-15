@@ -1,32 +1,30 @@
+import { Filter } from '@common/models/QueryOption';
 import { Transaction } from '@domain/transaction/transaction.model';
 import { DestroyOptions, UpdateOptions } from 'sequelize';
-import { Filter } from '@common/models/QueryOption';
 import sequelize = require('sequelize');
 
 export class TransactionRepositoryImpl {
   constructor() {}
 
-  async save(transaction: Transaction) {
-    return await transaction.save();
+  public async save(transaction: Transaction) {
+    return transaction.save();
   }
 
-  async findAll(filter: Filter) {
+  public async findAll(filter: Filter) {
     if (!filter.raw) filter.raw = true;
-    return await Transaction.findAll(filter);
+
+    return Transaction.findAll(filter);
   }
 
-  async findById(id: number) {
-    return await Transaction.findByPrimary(id, { raw: true });
+  public async findById(id: number) {
+    return Transaction.findByPrimary(id, { raw: true });
   }
 
-  async update(
-    transaction: Partial<Transaction>,
-    option: UpdateOptions
-  ): Promise<[number, Transaction[]]> {
-    return await Transaction.update(transaction, option);
+  public async update(transaction: Partial<Transaction>, option: UpdateOptions): Promise<[number, Transaction[]]> {
+    return Transaction.update(transaction, option);
   }
 
-  async delete(option: DestroyOptions): Promise<number> {
-    return await Transaction.destroy(option);
+  public async delete(option: DestroyOptions): Promise<number> {
+    return Transaction.destroy(option);
   }
 }
