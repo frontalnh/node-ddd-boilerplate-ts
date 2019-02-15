@@ -8,10 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const CustomError_1 = require("@common/models/CustomError");
 const HttpErrCode_1 = require("@common/constants/HttpErrCode");
-const authenticator_1 = require("@utils/authenticator");
+const CustomError_1 = require("@common/models/CustomError");
 const repositories_1 = require("@infra/sequelizejs/mysql/repositories");
+const cryptoHelper_1 = require("@utils/cryptoHelper");
 function apiGuard(target, propertyKey, descriptor) {
     let originalMethod = descriptor.value;
     descriptor.value = function (...args) {
@@ -35,8 +35,7 @@ function apiGuard(target, propertyKey, descriptor) {
 exports.apiGuard = apiGuard;
 const extractUserFromJwt = (jwt) => __awaiter(this, void 0, void 0, function* () {
     let apiUserRepository = new repositories_1.UserRepositoryImpl();
-    let decoded = authenticator_1.decodeJwt(jwt);
-    console.log('Decoded: ', decoded);
+    let decoded = cryptoHelper_1.cryptoHelper.decodeJwt(jwt);
     let user = yield apiUserRepository.findById(decoded.user.id);
     if (!user)
         throw new Error(HttpErrCode_1.HttpErrCode.AUTH.NO_USER);

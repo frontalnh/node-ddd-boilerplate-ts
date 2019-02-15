@@ -18,11 +18,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express = __importStar(require("express"));
-const httpSender_1 = require("@utils/httpSender");
 const FilterSchema_1 = require("@common/validateSchemas/FilterSchema");
-const joi_1 = __importDefault(require("joi"));
 const order_model_1 = require("@domain/order/order.model");
+const httpSender_1 = require("@utils/httpSender");
+const express = __importStar(require("express"));
+const joi_1 = __importDefault(require("joi"));
 class OrderRoute {
     constructor(orderRepository) {
         this.orderRepository = orderRepository;

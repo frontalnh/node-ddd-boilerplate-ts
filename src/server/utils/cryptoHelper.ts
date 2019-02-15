@@ -25,3 +25,5 @@ class CryptoHelper {
     return hash;
   }
 }
+
+export const cryptoHelper = new CryptoHelper();

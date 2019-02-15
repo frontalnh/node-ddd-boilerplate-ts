@@ -8,10 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_model_1 = require("@domain/user/user.model");
-const CustomError_1 = require("@common/models/CustomError");
 const HttpErrCode_1 = require("@common/constants/HttpErrCode");
-const authenticator_1 = require("@utils/authenticator");
+const CustomError_1 = require("@common/models/CustomError");
+const user_model_1 = require("@domain/user/user.model");
+const cryptoHelper_1 = require("@utils/cryptoHelper");
 class UserApi {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -31,7 +31,7 @@ class UserApi {
                 throw new CustomError_1.CustomError(HttpErrCode_1.HttpErrCode.REGISTER.EXIST_PHONE, '이미 존재하는 핸드폰번호 입니다.');
             let user = new user_model_1.User({
                 email,
-                password: authenticator_1.encrypt(password),
+                password: cryptoHelper_1.cryptoHelper.encrypt(password),
                 phone,
                 birthday
             });
