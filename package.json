@@ -33,7 +33,7 @@
     "@types/swagger-ui-express": "^3.0.0",
     "@types/winston": "^2.4.4",
     "aws-sdk": "^2.442.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.2",
     "babel-loader": "^8.0.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
